@@ -1,0 +1,353 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Work+Sans:400,900);
+body {
+    background-color: #353535;
+    color: #fff;
+    /*overflow-x: hidden;*/
+}
+#page-header {
+    background-color: #ffa500;
+    margin-bottom: 20px;
+    border-bottom: 5px solid #dd8c00;
+}
+#page-header h1 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 900;
+    padding: 10px 0 10px 0;
+    color: #333333;
+}
+#page-header h1 small {
+    color: #fff;
+    text-shadow: 2px 2px 2px #777;
+    font-family: "Oswald", sans-serif;
+}
+#page-footer {
+    background-color: #282727;
+    padding: 40px 0 20px 0;
+    color: #333333;
+    font-size: 1.2em;
+    box-shadow: 0 0 50px #000;
+    margin-top: 50px;
+}
+#page-footer > div {
+    font-family: "Oswald", sans-serif;
+    color: #fff;
+}
+#fretboard {
+    font-family: "Oswald", sans-serif;
+    margin: auto;
+    margin-bottom: 30px;
+}
+.clear {
+    clear: both;
+}
+.fret {
+    float: left;
+}
+#fretboard > div > div.fret-bar.fret {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4c4c4c+0,5e5e5e+9,5e5e5e+9,5e5e5e+89,4c4c4c+100 */
+    background: #4c4c4c; /* Old browsers */
+    background: -moz-linear-gradient(left, #4c4c4c 0%, #5e5e5e 9%, #5e5e5e 9%, #5e5e5e 89%, #4c4c4c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #4c4c4c 0%, #5e5e5e 9%, #5e5e5e 9%, #5e5e5e 89%, #4c4c4c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #4c4c4c 0%, #5e5e5e 9%, #5e5e5e 9%, #5e5e5e 89%, #4c4c4c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#4c4c4c',GradientType=1 ); /* IE6-9 */
+}
+.fret-bar {
+    display: block;
+}
+.string {
+    border-top: 3px solid #898989;
+}
+.fret-bar.open .string {
+    border-right: 10px solid #898989;
+}
+.fret-bar.fret .string {
+    border-left: 2px solid #a3a3a3;
+    border-right: 1px solid #a3a3a3;
+}
+#fretboard .fret:last-child .fret-bar .string {
+    border-right: 3px solid #a3a3a3;
+}
+.fret-bar .string:last-child {
+    border-left: none;
+    border-right: none;
+}
+.fret-bar.open .string:last-child {
+    padding-right: 10px;
+}
+.fret-bar.fret .string:last-child {
+    padding-left: 2px;
+}
+.fret-bar.fret {
+    /*background-color: #5e5e5e;*/
+}
+.fret-marker {
+    display: block;
+    clear: both;
+    font-size: 2em;
+    padding: 10px;
+    padding-top: 30px;
+    text-align: center;
+    text-shadow: 1px 1px 5px #000;
+}
+.fret-marker.underline {
+    /*text-decoration: underline;*/
+    color: #ffa500;
+}
+.dot,
+.ddot {
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: auto 100% !important;
+}
+.dot {
+    background-image: url("../img/dot.png"), linear-gradient(to right, #4c4c4c 0%, #5e5e5e 9%, #5e5e5e 9%, #5e5e5e 89%, #4c4c4c 100%) !important;
+}
+.ddot {
+    background-image: url("../img/ddot.png"), linear-gradient(to right, #4c4c4c 0%, #5e5e5e 9%, #5e5e5e 9%, #5e5e5e 89%, #4c4c4c 100%) !important;
+}
+.string-marker {
+    cursor: pointer;
+}
+.string-marker:hover .string-note {
+    opacity: 1;
+    transform: scale(1.5, 1.5);
+}
+.string-note {
+    background-color: #888;
+    border-radius: 50%;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    line-height: 32px;
+    font-weight: bolder;
+    top: 8px;
+    margin: auto;
+    opacity: 0;
+    transition: background-color 0.2s, transform 0.2s ease-in-out;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 5px #000;
+}
+.show-note {
+    opacity: 1;
+}
+.blue-note {
+    background-color: #0c8ac9;
+}
+.black-note {
+    background-color: #000;
+}
+.red-note {
+    background-color: #ce1414;
+}
+.green-note {
+    background-color: #4ba31f;
+}
+.orange-note {
+    background-color: #ffbb00;
+}
+.cyan-note {
+    background-color: #07bfaf;
+}
+.pink-note {
+    background-color: #f70797;
+}
+.deeppurple-note {
+    background-color: #720145;
+}
+.yellow-note {
+    background-color: #f7d202;
+}
+.darkblue-note {
+    background-color: #156891;
+}
+.scarlet-note {
+    background-color: #ff2400;
+}
+.lime-note {
+    background-color: #84e004;
+}
+.purple-note {
+    background-color: #b50a70;
+}
+.tuning {
+    float: left;
+    margin-right: 5px;
+}
+/*Range slider*/
+#fretRangeSlider {
+    margin: 30px 0 60px 0;
+}
+.noUi-target {
+    border: none;
+    box-shadow: none;
+}
+.noUi-background {
+    background-color: #545454;
+    box-shadow: none;
+}
+.noUi-connect {
+    background-color: #bf7c00;
+    box-shadow: none;
+}
+.noUi-handle {
+    border-radius: 0;
+    cursor: pointer;
+    background-color: #ffa500;
+    box-shadow: none;
+    border: none;
+    width: 32px !important;
+    height: 32px !important;
+    top: -11px !important;
+    left: -16px !important;
+    box-shadow: 0 0 5px #000;
+}
+.noUi-handle-lower:before,
+.noUi-handle-lower:after,
+.noUi-handle-upper:before,
+.noUi-handle-upper:after {
+    content: none;
+}
+.noUi-handle:after {
+    content: "";
+    background: none;
+    width: 0;
+    height: 0;
+    top: 32px;
+    left: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 12px solid #ffa500;
+}
+.noUi-handle-lower,
+.noUi-handle-upper {
+}
+.noUi-horizontal {
+    height: 12px;
+}
+#selectColor {
+    margin-left: -32px;
+    list-style: none;
+}
+#selectColor li {
+    float: left;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+}
+#selectMode a {
+    transition: all 0.2s;
+}
+#selectMode a:active,
+#selectMode a:focus {
+    outline: none;
+}
+.active.string-note {
+    transform: scale(1.4, 1.4);
+    border: 3px solid #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.open .string-note {
+    opacity: 1;
+}
+
+.panel-dark {
+    color: #fff;
+    background-color: #5e5e5e;
+}
+.panel-dark li {
+    background-color: #5e5e5e;
+    border: none;
+}
+.panel-dark li:nth-child(odd) {
+    background-color: #4f4e4e;
+}
+.panel-dark li:nth-child(even) {
+    background-color: #545454;
+}
+
+.btn-default {
+    background-color: #5e5e5e;
+    color: #fff;
+    border-color: #494949;
+}
+.btn-primary {
+    background-color: #ffa500;
+    border-color: #bf7c00;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: #e59400;
+    border-color: #7f5200;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:focus,
+.nav-tabs > li.active > a:hover {
+    background-color: #ffa500;
+    color: #fff;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    border-color: #494949;
+    border-radius: 0;
+    font-size: 1.8em;
+    font-family: "Oswald", sans-serif;
+    padding: 20px 40px;
+    border: none;
+    margin: 0;
+    border-bottom: 5px solid #dd8c00;
+}
+.nav-tabs > li {
+    margin: 0;
+    margin-bottom: -5px;
+}
+.nav-tabs > li > a {
+    color: #fff;
+    border: none;
+    font-size: 1.8em;
+    font-family: "Oswald", sans-serif;
+    padding: 20px 40px;
+    margin: 0;
+    border-bottom: 5px solid transparent;
+}
+.nav-tabs > li > a:focus,
+.nav-tabs > li > a:hover {
+    background-color: #5e5e5e;
+    color: #fff;
+    border-radius: 0;
+    border-color: #dd8c00;
+}
+.nav-tabs {
+    border-color: #494949;
+    border: none;
+    border-bottom: 5px solid #ffa500;
+}
+.rangeEdit {
+    width: 50px !important;
+}
+.tab-content {
+    margin-bottom: 20px !important;
+}
+.form-horizontal .form-group {
+    margin: 0;
+}
+.btn-gold,
+.btn-gold:active,
+.btn-gold:focus {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e7b032+0,ae4818+100 */
+    background: #e7b032; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #e7b032 0%, #ae4818 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #e7b032 0%, #ae4818 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #e7b032 0%, #ae4818 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7b032', endColorstr='#ae4818',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: #fff;
+    font-weight: 400;
+    font-size: 1em;
+    padding: 16px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-family: "Oswald", sans-serif;
+    letter-spacing: 1px;
+    border: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}

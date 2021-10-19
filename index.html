@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="The Guitar Utilities - Scales generator" />
+        <meta name="keywords" content="fretboard.js,scale generator, guitar scales, guitar, bass, guitar utilities" />
+        <meta name="author" content="Rafał Karczmarzyk" />
+        <!--Facebook OG-->
+        <meta property="og:title" content="Guitar Utilities" />
+        <meta property="og:image" content="http://testing.liptun.eu/content/pages/guitar/assets/img/thumbnail.png" />
+        <meta property="og:description" content="The Guitar Utilities - Scales generator" />
+        <meta property="fb:admins" content="100003313535115" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://testing.liptun.eu/content/pages/guitar/" />
+        <meta property="og:site_name" content="liptun.eu - The Guitar Utilities" />
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>Guitar Utilities</title>
+        <!-- Bootstrap -->
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="assets/css/nouislider.min.css" rel="stylesheet" />
+        <link href="assets/css/default.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="favicon.png" />
+        <link rel="image_src" href="http://testing.liptun.eu/content/pages/guitar/assets/img/thumbnail.png" />
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container-fluid" id="page-header">
+            <div class="container" id="app-name">
+                <h1><img src="assets/img/brand_64x.png" alt="brand" /> fretboard.js <small>The Guitar Utilities</small></h1>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3">
+                    <div class="form-inline">
+                        <div class="form-group col-xs-6">
+                            <label for="rangeBegin">From:</label>
+                            <input id="rangeBegin" type="text" class="form-control rangeEdit" placeholder="Begin" />
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="rangeEnd">To</label>
+                            <input id="rangeEnd" type="text" class="form-control rangeEdit" placeholder="End" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-9">
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <div
+                                class="btn-group dropupt"
+                                id="instrumentSelect"
+                                data-strings="6"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Select instrument"
+                            >
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Guitar <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-strings="6">Guitar</a></li>
+                                    <li><a href="#" data-strings="4">Bass</a></li>
+                                </ul>
+                            </div>
+                            <button id="refreshBtn" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="Re-draw fretboard">
+                                <i class="fa fa-refresh"></i>
+                            </button>
+                            <button id="removeAllBtn" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Clear fretboard">
+                                <i class="fa fa-trash-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="container">
+                        <div id="fretRangeSlider"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div id="fretboard"><!--Generate with script--></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#t1" data-toggle="tab">Select</a></li>
+                        <li><a href="#t2" data-toggle="tab">Scales</a></li>
+                        <li><a href="#t3" data-toggle="tab">Chords</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Tab 1 -->
+                        <!-- Tab 1 -->
+                        <!-- Tab 1 -->
+                        <div class="tab-pane active" id="t1">
+                            <p></p>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label">Color</label>
+                                    <div class="col-xs-10">
+                                        <ul id="selectColor" data-color="orange">
+                                            <li>
+                                                <div
+                                                    class="string-note show-note yellow-note"
+                                                    data-color="yellow"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Yellow"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="active string-note show-note orange-note"
+                                                    data-color="orange"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Orange"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note scarlet-note"
+                                                    data-color="scarlet"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Scarlet"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note red-note"
+                                                    data-color="red"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Red Hot Chili Peppers"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note lime-note"
+                                                    data-color="lime"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Lime"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note green-note"
+                                                    data-color="green"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Green Day"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note cyan-note"
+                                                    data-color="cyan"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Cyan"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note blue-note"
+                                                    data-color="blue"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Blue"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note pink-note"
+                                                    data-color="pink"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Pink Floyd"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note purple-note"
+                                                    data-color="purple"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Purple"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note deeppurple-note"
+                                                    data-color="deeppurple"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Deep Purple"
+                                                ></div>
+                                            </li>
+                                            <li>
+                                                <div
+                                                    class="string-note show-note black-note"
+                                                    data-color="black"
+                                                    data-toggle="tooltip"
+                                                    data-placement="bottom"
+                                                    title="Black Sabbath"
+                                                ></div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label">Mode</label>
+                                    <div class="col-xs-10">
+                                        <div id="selectMode" data-mode="0">
+                                            <a
+                                                href="#"
+                                                data-mode="0"
+                                                class="btn btn-default btn-lg btn-primary"
+                                                data-toggle="tooltip"
+                                                data-placement="bottom"
+                                                title="Single"
+                                                ><i class="fa fa-circle-o fa-2x"></i
+                                            ></a>
+                                            <a href="#" data-mode="2" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="bottom" title="Pitch"
+                                                ><i class="fa fa-dot-circle-o fa-2x"></i
+                                            ></a>
+                                            <a href="#" data-mode="1" class="btn btn-default btn-lg" data-toggle="tooltip" data-placement="bottom" title="Key"
+                                                ><i class="fa fa-circle fa-2x"></i
+                                            ></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Tab 2 -->
+                        <!-- Tab 2 -->
+                        <!-- Tab 2 -->
+                        <div class="tab-pane" id="t2">
+                            <p></p>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label">Root</label>
+                                    <div class="col-xs-10">
+                                        <div class="dropup" id="scaleRoot" data-key="9">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                A <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" data-key="0">C</a></li>
+                                                <li><a href="#" data-key="1">Db/C#</a></li>
+                                                <li><a href="#" data-key="2">D</a></li>
+                                                <li><a href="#" data-key="3">Eb/D#</a></li>
+                                                <li><a href="#" data-key="4">E</a></li>
+                                                <li><a href="#" data-key="5">F</a></li>
+                                                <li><a href="#" data-key="6">Gb/F#</a></li>
+                                                <li><a href="#" data-key="7">G</a></li>
+                                                <li><a href="#" data-key="8">Ab/G#</a></li>
+                                                <li><a href="#" data-key="9">A</a></li>
+                                                <li><a href="#" data-key="10">Bb/A#C</a></li>
+                                                <li><a href="#" data-key="11">B</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <label for="scalePattern" class="col-xs-2 control-label">Pattern</label>
+                                    <div class="col-xs-10">
+                                        <input id="scalePattern" type="text" class="form-control" placeholder="3-5-6b-7-10" value="3-5-6b-7-10" />
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <label class="col-xs-2 control-label">Preset</label>
+                                    <div class="col-xs-10">
+                                        <div class="dropup" id="scalePatternPreset">
+                                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                                Blues Minor <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" data-pattern="2-4-5-7-9-11">Major</a></li>
+                                                <li><a href="#" data-pattern="2-3-5-7-9-11">Melodic Minor</a></li>
+                                                <li><a href="#" data-pattern="2-3-5-7-8-10">Natural minor</a></li>
+                                                <li><a href="#" data-pattern="2-3-5-7-8-11">Harmonic minor</a></li>
+                                                <li><a href="#" data-pattern="2-3-4-5-7-9-10">Dorian</a></li>
+                                                <li><a href="#" data-pattern="1-3-5-7-8-9-10">Phrygian</a></li>
+                                                <li><a href="#" data-pattern="2-4-6-7-9-11">Lydian</a></li>
+                                                <li><a href="#" data-pattern="2-4-5-7-9-10">Mixolydian</a></li>
+                                                <li><a href="#" data-pattern="2-3-5-7-8-10">Aeolian</a></li>
+                                                <li><a href="#" data-pattern="2-4-5-7-9-11">Ionian</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#" data-pattern="2-4-7-9">Pentatonic Major</a></li>
+                                                <li><a href="#" data-pattern="3-5-7-10">Pentatonic Minor</a></li>
+                                                <li><a href="#" data-pattern="2-5-7-10">Pentatonic Neutral</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#" data-pattern="2-3b-4-7-9">Blues Major</a></li>
+                                                <li><a href="#" data-pattern="3-5-6b-7-10">Blues Minor</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#" data-pattern="1-2-3-4-5-6-7-8-9-10-11">Chromatic</a></li>
+                                                <li><a href="#" data-pattern="2-4-6-8-10">Whole tone</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-2 col-xs-10">
+                                        <div class="checkbox">
+                                            <label data-toggle="tooltip" data-placement="right" title="Remove all notes from fretboard while drawing scale">
+                                                <input id="scaleClear" type="checkbox" checked /> Clear fretboard
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <div class="form-group">
+                                    <div class="col-xs-offset-2 col-xs-10">
+                                        <button id="scaleGen" class="btn btn-success">Generate!</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="t3">
+                            <h1>Not available at this time</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row">
+                        <h3 class="col-xs-12">Tuning</h3>
+                        <div class="col-xs-12 col-sm-6" style="margin-bottom: 10px">
+                            <div class="dropup tuning" id="string-6" data-note="28">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">E2 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="28">E2</a></li>
+                                    <li><a href="#" data-note="27">Eb2</a></li>
+                                    <li><a href="#" data-note="26">D2</a></li>
+                                    <li><a href="#" data-note="25">Db2</a></li>
+                                    <li><a href="#" data-note="24">C2</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup tuning" id="string-5" data-note="33">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">A2 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="33">A2</a></li>
+                                    <li><a href="#" data-note="32">Ab2</a></li>
+                                    <li><a href="#" data-note="31">G2</a></li>
+                                    <li><a href="#" data-note="30">Gb2</a></li>
+                                    <li><a href="#" data-note="29">F2</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup tuning" id="string-4" data-note="38">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">D3 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="38">D3</a></li>
+                                    <li><a href="#" data-note="37">Db3</a></li>
+                                    <li><a href="#" data-note="36">C3</a></li>
+                                    <li><a href="#" data-note="35">B2</a></li>
+                                    <li><a href="#" data-note="34">Bb2</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6" style="margin-bottom: 10px">
+                            <div class="dropup tuning" id="string-3" data-note="43">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">G3 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="43">G3</a></li>
+                                    <li><a href="#" data-note="42">Gb3</a></li>
+                                    <li><a href="#" data-note="41">F3</a></li>
+                                    <li><a href="#" data-note="40">E3</a></li>
+                                    <li><a href="#" data-note="39">Eb3</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup tuning" id="string-2" data-note="47">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">B3 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="47">B3</a></li>
+                                    <li><a href="#" data-note="46">Bb3</a></li>
+                                    <li><a href="#" data-note="45">A3</a></li>
+                                    <li><a href="#" data-note="44">Ab3</a></li>
+                                    <li><a href="#" data-note="43">G3</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropup tuning" id="string-1" data-note="52">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">E4 <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-note="52">E4</a></li>
+                                    <li><a href="#" data-note="51">Eb4</a></li>
+                                    <li><a href="#" data-note="50">D4</a></li>
+                                    <li><a href="#" data-note="49">Db4</a></li>
+                                    <li><a href="#" data-note="48">C4</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h4>Preset</h4>
+                            <div class="dropup" id="tuning-preset">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                    E Standard (E A D G B E) <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" data-tuning="28-33-38-43-47-52">E Standard (E A D G B E)</a></li>
+                                    <li><a href="#" data-tuning="27-32-37-42-46-51">Eb Standard (Eb Ab Db Gb Bb Eb)</a></li>
+                                    <li><a href="#" data-tuning="26-31-36-41-45-50">D Standard (D G C F A D)</a></li>
+                                    <li><a href="#" data-tuning="24-29-34-39-43-48">C Standard (C F Bb Eb G C)</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#" data-tuning="26-33-38-43-47-52">Drop D (D A D G B E)</a></li>
+                                    <li><a href="#" data-tuning="25-32-37-42-46-51">Drop Db (Db Ab Db Gb Bb Eb)</a></li>
+                                    <li><a href="#" data-tuning="24-31-36-41-45-50">D Drop C (C G C F A D)</a></li>
+                                </ul>
+                            </div>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="panel panel-dark">
+                        <div class="panel-heading">
+                            Draw list <small>(Developer Thing)</small> <button id="removeAllDev" class="btn btn-danger btn-xs pull-right">Remove All</button>
+                        </div>
+                        <ul class="list-group" id="drawList"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-footer" class="container-fluid">
+            <div class="container-fluid text-center">
+                <p>Rafał Karczmarzyk aka LiptuN ReD 2016 - All rights reserved</p>
+            </div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="assets/js/jquery-1.12.0.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/nouislider.min.js"></script>
+        <script src="assets/js/smoothscroll.js"></script>
+        <script src="assets/js/onLoad.js"></script>
+    </body>
+</html>
